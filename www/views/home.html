@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mCompute</title>
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <!-- STYLES -->
+    <link rel="stylesheet" href="../css/themes/default/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="../_assets/css/jqm-demos.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link rel="stylesheet" href="../css/custom.css">
+
+    <!-- SCRIPTS -->
+	<script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../_assets/js/index.js"></script>
+    <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="../js/jssor.slider.mini.js"></script>
+    <script type="text/javascript" src="../js/custom.js"></script>
+    <script type="text/javascript">
+        var panel1 = '<div data-role="panel" data-display="push" data-theme="b" id="nav-home"><ul data-role="listview"><li data-icon="home"><a href="#introduction-page" data-rel="close">Home</a></li><li><a href="#about-us">About</a></li><li><a href="#team">Team</a></li><li><a href="#contact-us">Contact Us</a></li></ul></div>';
+
+
+        var panel2 = '<div data-role="panel" data-position="right" data-display="reveal" data-theme="a" id="login-form"><form class="loginform"><h2>Login</h2><label for="name">Username:</label><input type="text" name="name" id="name" value="" data-clear-btn="true" data-mini="true"><label for="password">Password:</label><input type="password" name="password" id="password" value="" data-clear-btn="true" autocomplete="off" data-mini="true"><div class="ui-grid-a"><div class="ui-block-a"><a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-b ui-mini">Cancel</a></div><div class="ui-block-b"><a href="#dlg-invalid-credentials" data-rel="popup" data-transition="pop" data-position-to="window" href="#" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-mini">Login</a></div></div></form></div>'
+
+        $(document).one('pagebeforecreate', function () {
+            $.mobile.pageContainer.append(panel1);
+            $.mobile.pageContainer.append(panel2);
+            $("#nav-home").panel().enhanceWithin();
+            $("#login-form").panel().enhanceWithin();
+
+            $("#dlg-invalid-credentials").enhanceWithin().popup();
+        });
+
+    </script>
+
+</head>
+<body>
+
+<div data-role="page" class="jqm-demos ui-responsive-panel" id="introduction-page" data-title="mCompute Homepage">
+
+    <div data-role="header">
+        <h1>Welcome to mCompute</h1>
+        <a href="#nav-home"  data-icon="bars" data-iconpos="notext" >
+            Menu
+        </a>
+        <a href="#login-form" data-icon="user" data-iconpos="notext" >
+            Login
+        </a>
+
+    </div><!-- /header -->
+    
+    <div style="padding: 0;" class="ui-content jqm-fullwidth">
+        <div id="jssor_1" style="position: relative; margin: 0 0; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
+            <!-- Loading Screen -->
+            <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+                <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+                <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+            </div>
+            <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden;">
+                <div data-p="112.50" style="display: none;">
+                    <img data-u="image" src="../images/slider/01.jpg" />
+                </div>
+                <div data-p="112.50" style="display: none;">
+                    <img data-u="image" src="../images/slider/02.jpg" />
+                </div>
+                <div data-p="112.50" style="display: none;">
+                    <img data-u="image" src="../images/slider/03.jpg" />
+                </div>
+                <div data-p="112.50" style="display: none;">
+                    <img data-u="image" src="../images/slider/04.jpg" />
+                </div>            
+            </div>
+            <!-- Bullet Navigator -->
+            <div data-u="navigator" class="jssorb01" style="bottom:16px;right:16px;">
+                <div data-u="prototype" style="width:12px;height:12px;"></div>
+            </div>
+            <!-- Arrow Navigator -->
+            <span data-u="arrowleft" class="jssora05l" style="top:0px;left:8px;width:40px;height:40px;" data-autocenter="2"></span>
+            <span data-u="arrowright" class="jssora05r" style="top:0px;right:8px;width:40px;height:40px;" data-autocenter="2"></span>
+        </div>
+    </div><!-- /slider ends -->
+
+    <div role="main" class="ui-content jqm-content jqm-fullwidth">
+
+    	<h1>Intro to mCompute Application</h1>
+        <hr/>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+
+
+<div data-role="page" class="jqm-demos ui-responsive-panel" id="about-us" data-title="About Us">
+
+    <div data-role="header">
+        <h1>About Us</h1>
+        <a href="#nav-home"  data-icon="bars" data-iconpos="notext" >
+            Menu
+        </a>
+        <a href="#login-form" data-icon="user" data-iconpos="notext" >
+            Login
+        </a>
+
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content jqm-fullwidth">
+
+        <h1 id="about" >About Us</h1>
+        <hr/>
+        <p  >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+    </div>
+
+</div>
+
+
+
+
+<div data-role="page" class="jqm-demos ui-responsive-panel" id="team" data-title="Team">
+
+    <div data-role="header">
+        <h1>Team</h1>
+        <a href="#nav-home"  data-icon="bars" data-iconpos="notext" >
+            Menu
+        </a>
+        <a href="#login-form" data-icon="user" data-iconpos="notext" >
+            Login
+        </a>
+
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content jqm-fullwidth">
+
+        <h1 id="team" >Team</h1>
+        <hr/>
+        <p  >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+    </div>
+
+</div>
+
+
+
+
+
+<div data-role="page" class="jqm-demos ui-responsive-panel" id="contact-us" data-title="Contact Us">
+
+    <div data-role="header">
+        <h1>Contact Us</h1>
+        <a href="#nav-home"  data-icon="bars" data-iconpos="notext" >
+            Menu
+        </a>
+        <a href="#login-form" data-icon="user" data-iconpos="notext" >
+            Login
+        </a>
+
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content jqm-fullwidth">
+
+        <h1 id="contact-us" >Contact Us</h1>
+        <hr/>
+        <div id="contactform">
+            <form data-parsley-validate method="post" action="mail.php">
+              Name: <input type="text" id="naam" name="naam" value="" placeholder="Name" required/>
+              <br>
+              E-mail: <input type="email" id="mail" name="mail" value="" placeholder="E-mail" required/>
+              <br>
+              Phone Number: <input type="tel" id="telefoon" name="telefoon" value="" placeholder="Phone"/>
+              <br>
+              Subject: <input type="text" id="subject" name="subject" value="" placeholder="Subject" required/>
+              <br>
+              Message:
+              <br>
+              <textarea style="height:100px;" id="message" name="message" placeholder="Enter your message here..." required></textarea> 
+              <br>
+              <input type="submit" value="Send" name="submit" class="btn">
+             </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<!-- login error popup -->
+<div data-role="popup" id="dlg-invalid-credentials" data-dismissible="false" data-theme="a" style="max-width:400px;">
+        <div role="main" class="ui-content">
+            <h3 class="mc-text-danger">Login Failed</h3>
+            <p>Please enter the correct credentials</p>
+            <div class="mc-text-center"><a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">Close</a></div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

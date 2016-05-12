@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mCompute</title>
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <!-- STYLES -->
+    <link rel="stylesheet" href="../css/themes/default/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="../_assets/css/jqm-demos.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link rel="stylesheet" href="../css/custom.css">
+
+    <!-- SCRIPTS -->
+	<script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../_assets/js/index.js"></script>
+    <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="../js/jssor.slider.mini.js"></script>
+    <script type="text/javascript" src="../js/custom.js"></script>
+
+
+    <script type="text/javascript">
+        var panel11 = '<div data-role="panel" data-display="push" data-theme="b" id="professor-options"><ul data-role="listview"><li data-icon="home"><a href="#professor-dashboard" data-rel="close">Overview</a></li><li data-icon="camera"><a href="#assign-scores">Assign Scores</a></li><li data-icon="edit"><a href="#maximum-points">Maximum Points</a></li><li data-icon="check"><a href="#percentage-distribution">Percentage Distribution</a></li><li data-icon="star"><a href="#grade-range">Grade Range</a></li></ul></div>';
+
+
+        var panel21 = '<div data-role="panel" data-position="right" data-display="reveal" data-theme="a" id="user-menu"><ul data-role="listview"><li data-icon="home"><a href="#professor-dashboard" data-rel="close">Overview</a></li><li data-icon="user"><a href="#">Account Settings</a></li><li data-icon="bullets"><a href="#">Notifications</a></li><li data-icon="info"><a href="#">Help</a></li><li data-icon="power"><a href="#">Logout</a></li></ul></div>';
+
+        $(document).one('pagebeforecreate', function () {
+            $.mobile.pageContainer.append(panel11);
+            $.mobile.pageContainer.append(panel21);
+            $("#professor-options").panel().enhanceWithin();
+            $("#user-menu").panel().enhanceWithin();
+
+        });
+    </script>
+
+</head>
+<body>
+
+<div data-role="page" class="jqm-demos ui-responsive-panel" id="professor-dashboard" data-title="Professor Dashboard">
+
+    <div data-role="header">
+        <h1>Professor Dashboard</h1>
+        <a href="#professor-options"  data-icon="bars" data-iconpos="notext" >
+            Menu
+        </a>
+        <a href="#user-menu" data-icon="gear" data-iconpos="notext" >
+            Settings
+        </a>
+
+    </div><!-- /header -->
+    
+
+    <div role="main" style="padding: 0;" class="ui-content jqm-content jqm-fullwidth">
+        <div class="card hovercard">
+            <div class="cardheader">
+
+            </div>
+            <div class="avatar">
+                <img alt="" src="http://lorempixel.com/100/100/people/3/">
+            </div>
+            <div class="info">
+                <div class="title">
+                    <a target="_blank" href="#">John Doe</a>
+                </div>
+                <div class="desc"><strong>Professor ID :</strong> 0100XXXXX09</div>
+                <div class="desc"><strong>E-Mail ID :</strong> v*******.d******@sjsu.edu</div>
+                <div class="desc"><strong>Phone # :</strong> (6**)2**-8***</div>
+            </div>
+        </div>
+            
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+
+
+
+<div data-role="page" class="jqm-demos ui-responsive-panel" id="assign-scores" data-title="Assign Scores">
+
+    <div data-role="header">
+        <h1>Assign Scores</h1>
+        <a href="#professor-options"  data-icon="bars" data-iconpos="notext" >
+            Menu
+        </a>
+        <a href="#user-menu" data-icon="gear" data-iconpos="notext" >
+            Settings
+        </a>
+
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content jqm-fullwidth">
+
+        <h1 >Assign Scores</h1>
+        <p>Assign scores for each of the below for the students from the select dropdown.</p>
+        <hr/>
+        <form id="studentScoresForm" method="post" action="#">
+            <div class="ui-field-contain">
+                <label for="select-native-2"><strong>Student ID: </strong></label>
+                <select name="select-native-2" id="select-native-2" data-mini="true">
+                    <option value="">-- Select student id --</option>
+                    <option value="01xxxxxxx01">01xxxxxxx01</option>
+                    <option value="01xxxxxxx02">01xxxxxxx02</option>
+                    <option value="01xxxxxxx03">01xxxxxxx03</option>
+                    <option value="01xxxxxxx04">01xxxxxxx04</option>
+                    <option value="01xxxxxxx05">01xxxxxxx05</option>
+                    <option value="01xxxxxxx06">01xxxxxxx06</option>
+                    <option value="01xxxxxxx07">01xxxxxxx07</option>
+                    <option value="01xxxxxxx08">01xxxxxxx08</option>
+                    <option value="01xxxxxxx09">01xxxxxxx09</option>
+                    <option value="01xxxxxxx10">01xxxxxxx10</option>
+                </select>
+            </div>
+
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <label for="homeworks">Homeworks:</label>
+                <input type="range" name="homeworks" id="homeworks" value="250" min="0" max="500" />
+            </div>
+
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <label for="labs">Labs:</label>
+                <input type="range" name="labs" id="labs" value="250" min="0" max="500" />
+            </div>
+
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <label for="project">Project:</label>
+                <input type="range" name="project" id="project" value="100" min="0" max="200" />
+            </div>        
+
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <label for="presentation">Presentation:</label>
+                <input type="range" name="presentation" id="presentation" value="50" min="0" max="100" />
+            </div>
+
+
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <label for="midterm">Midterm:</label>
+                <input type="range" name="midterm" id="midterm" value="50" min="0" max="100" />
+            </div>
+            
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <label for="final">Final:</label>
+                <input type="range" name="final" id="final" value="50" min="0" max="100" />
+            </div>    
+
+            <input type="submit" value="Save" />
+    
+        
+        </form>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+<div data-role="page" class="jqm-demos ui-responsive-panel" id="maximum-points" data-title="Maximum Points">
+
+    <div data-role="header">
+        <h1>Maximum Points</h1>
+        <a href="#professor-options"  data-icon="bars" data-iconpos="notext" >
+            Menu
+        </a>
+        <a href="#user-menu" data-icon="gear" data-iconpos="notext" >
+            Settings
+        </a>
+
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content jqm-fullwidth">
+
+        <h1  >Maximum Points Configuration</h1>
+        <p>Configure the maximum points of each of the below factors.</p>
+        <hr/>
+        
+        <form id="maximumPointsForm" method="post" action="#">
+
+
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                 <label for="number">Homeworks:</label>
+                 <input type="number" name="homeworks" id="homeworks" value="" min="0" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-body-c">
+            </div>
+            
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <label for="labs">Labs:</label>
+                <input type="number" name="labs" id="labs" value="" min="0" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-body-c">
+            </div>
+
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <label for="project">Project:</label>
+                <input type="number" name="project" id="project" value="" min="0" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-body-c">
+            </div>
+
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <label for="presentation">Presentation:</label>
+                <input type="number" name="presentation" id="presentation" value=""  min="0" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-body-c">
+            </div>
+
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <label for="midterm">Midterm:</label>
+                <input type="number" name="midterm" id="midterm" value=""  min="0" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-body-c">
+            </div>
+            
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <label for="final">Final:</label>
+                <input type="number" name="final" id="final" value=""  min="0" class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-body-c">
+            </div>
+        
+            <input type="submit" value="Save" />
+        
+        </form>
+
+
+    </div>
+
+</div>
+
+
+
+
+<div data-role="page" class="jqm-demos ui-responsive-panel" id="percentage-distribution" data-title="Percentage Distribution">
+
+    <div data-role="header">
+        <h1>Percentage Distribution</h1>
+        <a href="#professor-options"  data-icon="bars" data-iconpos="notext" >
+            Menu
+        </a>
+        <a href="#user-menu" data-icon="gear" data-iconpos="notext" >
+            Settings
+        </a>
+
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content jqm-fullwidth">
+
+        <h1 >Percentage Distribution Configuration</h1>
+        <p>Configure the weightage of each of the below in determining the final grades of the student.</p>
+        <hr/>
+        <form id="percentageDistributionForm" method="post" action="#">
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <label for="homeworks">Homeworks:</label>
+                <input type="range" name="homeworks" id="homeworks" value="50" min="0" max="100" />
+            </div>
+
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <label for="labs">Labs:</label>
+                <input type="range" name="labs" id="labs"  value="50" min="0" max="100" />
+            </div>
+
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <label for="project">Project:</label>
+                <input type="range" name="project" id="project"  value="50" min="0" max="100"  />
+            </div>        
+
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <label for="presentation">Presentation:</label>
+                <input type="range" name="presentation" id="presentation" value="50" min="0" max="100" />
+            </div>
+
+
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <label for="midterm">Midterm:</label>
+                <input type="range" name="midterm" id="midterm" value="50" min="0" max="100" />
+            </div>
+            
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <label for="final">Final:</label>
+                <input type="range" name="final" id="final" value="50" min="0" max="100" />
+            </div>    
+
+            <input type="submit" value="Save" />
+    
+        
+        </form>
+        
+
+
+    </div>
+
+</div>
+
+
+
+
+
+<div data-role="page" class="jqm-demos ui-responsive-panel" id="grade-range" data-title="Grade Range">
+
+    <div data-role="header">
+        <h1>Grade Range</h1>
+        <a href="#professor-options"  data-icon="bars" data-iconpos="notext" >
+            Menu
+        </a>
+        <a href="#user-menu" data-icon="gear" data-iconpos="notext" >
+            Settings
+        </a>
+
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content jqm-fullwidth">
+
+        <h1 >Grade Range Configuration</h1>
+        <hr/>
+        
+
+        <form id="gradeRangeForm" method="post" action="#">
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <div id="ASlider" data-role="rangeslider" data-track-theme="b" data-theme="a">
+                  <label for="aStart">A:</label>
+                  <input name="aStart" id="aStart" min="0" max="100" value="0" type="range" />
+                  <label for="aEnd">A:</label>
+                  <input name="aEnd" id="aEnd" min="0" max="100" value="100" type="range" />
+                </div>
+            </div>
+
+           <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <div id="BSlider"   data-role="rangeslider" data-track-theme="b" data-theme="a">
+                  <label for="bStart">B:</label>
+                  <input name="bStart" id="bStart" min="0" max="100" value="0" type="range" />
+                  <label for="bEnd">B:</label>
+                  <input name="bEnd" id="bEnd" min="0" max="100" value="100" type="range" />
+                </div>
+            </div>
+
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <div id="CSlider"  data-role="rangeslider" data-track-theme="b" data-theme="a">
+                  <label for="cStart">C:</label>
+                  <input name="cStart" id="cStart" min="0" max="100" value="0" type="range" />
+                  <label for="cEnd">C:</label>
+                  <input name="cEnd" id="cEnd" min="0" max="100" value="100" type="range" />
+                </div>
+            </div>
+
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <div id="DSlider"  data-role="rangeslider" data-track-theme="b" data-theme="a">
+                  <label for="dStart">D:</label>
+                  <input name="dStart" id="dStart" min="0" max="100" value="0" type="range" />
+                  <label for="dEnd">D:</label>
+                  <input name="dEnd" id="dEnd" min="0" max="100" value="100" type="range" />
+                </div>
+            </div>
+
+            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                <div id="FSlider"  data-role="rangeslider" data-track-theme="b" data-theme="a">
+                  <label for="fStart">F:</label>
+                  <input name="fStart" id="fStart" min="0" max="100" value="0" type="range" />
+                  <label for="fEnd">F:</label>
+                  <input name="fEnd" id="fEnd" min="0" max="100" value="100" type="range" />
+                </div>
+            </div>
+
+            <input type="submit" value="Save" />
+    
+        </form>        
+
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

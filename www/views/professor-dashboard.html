@@ -32,7 +32,55 @@
             $("#professor-options").panel().enhanceWithin();
             $("#user-menu").panel().enhanceWithin();
 
+
         });
+        
+        
+        function getListOfStudents(){
+            var courseId = 'CMPE-235';
+            var dataString = 'courseId=' + courseId;
+            //var courseId= document.getElementById('studentScoresForm').val();
+            alert('in get call' + courseId);
+            
+//            var courseId2 = document.studentScoresForm.elements['courseId'].value
+
+            var items="<option value=''> Select student </option>";
+       
+  
+             $.ajax({
+                 type: "GET",
+                 url: "../../backend/getStudentList.php?courseId="+courseId,
+                 cache: false,
+                 success: function(data){
+                     //var dataObj = JSON.parse(data);
+                     alert(data);
+                    var result=trim(data);
+                   
+                        $.each(data,function(index,item) 
+                        {
+                            alert('in get call' + item);
+                          items+="<option value='"+item.emailID+"'>"+item.emailID+"</option>";
+                        });
+                        $("#studentList").html(items); 
+                     
+                    }
+          });
+             
+             
+           
+      }
+    
+    
+    function trim(str){
+      var str=str.replace(/^\s+|\s+$/,'');
+      return str;
+    }
+    
+    
+    getListOfStudents();    
+
+
+        
     </script>
 
 </head>
@@ -95,21 +143,11 @@
         <h1 >Assign Scores</h1>
         <p>Assign scores for each of the below for the students from the select dropdown.</p>
         <hr/>
-        <form id="studentScoresForm" method="post" action="#">
+        <form id="studentScoresForm" name="studentScoresForm" method="post" action="../../backend/assignScore.php">
+            <input type="hidden" name="courseId" id="courseId" value="CMPE-235" />
             <div class="ui-field-contain">
-                <label for="select-native-2"><strong>Student ID: </strong></label>
-                <select name="select-native-2" id="select-native-2" data-mini="true">
-                    <option value="">-- Select student id --</option>
-                    <option value="01xxxxxxx01">01xxxxxxx01</option>
-                    <option value="01xxxxxxx02">01xxxxxxx02</option>
-                    <option value="01xxxxxxx03">01xxxxxxx03</option>
-                    <option value="01xxxxxxx04">01xxxxxxx04</option>
-                    <option value="01xxxxxxx05">01xxxxxxx05</option>
-                    <option value="01xxxxxxx06">01xxxxxxx06</option>
-                    <option value="01xxxxxxx07">01xxxxxxx07</option>
-                    <option value="01xxxxxxx08">01xxxxxxx08</option>
-                    <option value="01xxxxxxx09">01xxxxxxx09</option>
-                    <option value="01xxxxxxx10">01xxxxxxx10</option>
+                <label for="studentList"><strong>Student ID: </strong></label>
+                <select name="studentList" id="studentList" data-mini="true">
                 </select>
             </div>
 
@@ -177,8 +215,9 @@
         <p>Configure the maximum points of each of the below factors.</p>
         <hr/>
         
-        <form id="maximumPointsForm" method="post" action="#">
+        <form id="maximumPointsForm" method="post" action="../../backend/maxScore.php">
 
+            <input type="hidden" name="courseId" id="courseId" value="CMPE-235" />
 
             <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
                  <label for="number">Homeworks:</label>
@@ -240,7 +279,10 @@
         <h1 >Percentage Distribution Configuration</h1>
         <p>Configure the weightage of each of the below in determining the final grades of the student.</p>
         <hr/>
-        <form id="percentageDistributionForm" method="post" action="#">
+        <form id="percentageDistributionForm" method="post" action="../../backend/percentDist.php">
+            <input type="hidden" name="courseId" id="courseId" value="CMPE-235" />
+
+
             <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
                 <label for="homeworks">Homeworks:</label>
                 <input type="range" name="homeworks" id="homeworks" value="50" min="0" max="100" />
@@ -306,7 +348,9 @@
         <hr/>
         
 
-        <form id="gradeRangeForm" method="post" action="#">
+        <form id="gradeRangeForm" method="post" action="../../backend/gradeRange.php">
+            <input type="hidden" name="courseId" id="courseId" value="CMPE-235" />
+
             <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
                 <div id="ASlider" data-role="rangeslider" data-track-theme="b" data-theme="a">
                   <label for="aStart">A:</label>

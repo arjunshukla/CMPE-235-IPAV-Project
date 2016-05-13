@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,194 +14,474 @@
     <link rel="stylesheet" href="../css/custom.css">
 
     <!-- SCRIPTS -->
-	<script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
     <script type="text/javascript" src="../_assets/js/index.js"></script>
     <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="../js/jssor.slider.mini.js"></script>
     <script type="text/javascript" src="../js/custom.js"></script>
+    <script type="text/javascript" src="../js/validations.js"></script>
+    <script src="https://js.braintreegateway.com/js/braintree-2.24.0.min.js"></script>
+    <script>
+        // We generated a client token for you so you can test out this code
+        // immediately. In a production-ready integration, you will need to
+        // generate a client token on your server (see section below).
+        var clientToken = "eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiIzODQ3NjljOGY0MmFmMGIwY2MyNzJhODc5OTQwNmM0ZDcyNmFhZDIwNjJiMjY1MGY4ZGZlY2FmNTE3YmY1ZTNhfGNyZWF0ZWRfYXQ9MjAxNi0wNS0xMlQyMjo1OToxMS4zMjQ2ODEzMzkrMDAwMFx1MDAyNm1lcmNoYW50X2lkPTM0OHBrOWNnZjNiZ3l3MmJcdTAwMjZwdWJsaWNfa2V5PTJuMjQ3ZHY4OWJxOXZtcHIiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvMzQ4cGs5Y2dmM2JneXcyYi9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzLzM0OHBrOWNnZjNiZ3l3MmIvY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vY2xpZW50LWFuYWx5dGljcy5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tLzM0OHBrOWNnZjNiZ3l3MmIifSwidGhyZWVEU2VjdXJlRW5hYmxlZCI6dHJ1ZSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImRpc3BsYXlOYW1lIjoiQWNtZSBXaWRnZXRzLCBMdGQuIChTYW5kYm94KSIsImNsaWVudElkIjpudWxsLCJwcml2YWN5VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3BwIiwidXNlckFncmVlbWVudFVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS90b3MiLCJiYXNlVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhc3NldHNVcmwiOiJodHRwczovL2NoZWNrb3V0LnBheXBhbC5jb20iLCJkaXJlY3RCYXNlVXJsIjpudWxsLCJhbGxvd0h0dHAiOnRydWUsImVudmlyb25tZW50Tm9OZXR3b3JrIjp0cnVlLCJlbnZpcm9ubWVudCI6Im9mZmxpbmUiLCJ1bnZldHRlZE1lcmNoYW50IjpmYWxzZSwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwiYmlsbGluZ0FncmVlbWVudHNFbmFibGVkIjp0cnVlLCJtZXJjaGFudEFjY291bnRJZCI6ImFjbWV3aWRnZXRzbHRkc2FuZGJveCIsImN1cnJlbmN5SXNvQ29kZSI6IlVTRCJ9LCJjb2luYmFzZUVuYWJsZWQiOmZhbHNlLCJtZXJjaGFudElkIjoiMzQ4cGs5Y2dmM2JneXcyYiIsInZlbm1vIjoib2ZmIn0=";
+
+        braintree.setup(clientToken, "dropin", {
+            container: "payment-form"
+        });
+    </script>
     <script type="text/javascript">
-        var panel1 = '<div data-role="panel" data-display="push" data-theme="b" id="nav-home"><ul data-role="listview"><li data-icon="home"><a href="#introduction-page" data-rel="close">Home</a></li><li><a href="#about-us">About</a></li><li><a href="#team">Team</a></li><li><a href="#contact-us">Contact Us</a></li></ul></div>';
+            
+
+    function validLogin(){
+           var uname=$('#name').val();
+           var password=$('#password1').val();
+           alert(uname + " : " + password );
+           var dataString = 'name='+ uname + '&password='+ password;
+           $.ajax({
+                 type: "POST",
+                 url: "../../backend/login.php",
+                 data: dataString,
+                 cache: false,
+                 success: function(result){
+                 var result=trim(result);
+                 if(result == "ERROR") {
+                     $("#dlg-invalid-credentials").popup( "open" );
+                 } else if (result == "student") {
+                     window.location = '../views/student-dashboard.html';
+                 } else {
+                      window.location = '../views/professor-dashboard.html';
+                 }
+                 
+                }
+          });
+        }
+        
+        
+        function trim(str){
+          var str=str.replace(/^\s+|\s+$/,'');
+          return str;
+        }
+
+    
+        var panel1 = '<div data-role="panel" data-display="push" data-theme="b" id="nav-home"><ul data-role="listview"><li data-icon="home"><a href="#introduction-page" data-rel="close">Home</a></li><li><a href="#about-us">About</a></li><li><a href="#team">Team</a></li><li><a href="#payments">Payments</a><li><a href="#contact-us">Contact Us</a></li></ul></div>';
 
 
-        var panel2 = '<div data-role="panel" data-position="right" data-display="reveal" data-theme="a" id="login-form"><form class="loginform"><h2>Login</h2><label for="name">Username:</label><input type="text" name="name" id="name" value="" data-clear-btn="true" data-mini="true"><label for="password">Password:</label><input type="password" name="password" id="password" value="" data-clear-btn="true" autocomplete="off" data-mini="true"><div class="ui-grid-a"><div class="ui-block-a"><a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-b ui-mini">Cancel</a></div><div class="ui-block-b"><a href="#dlg-invalid-credentials" data-rel="popup" data-transition="pop" data-position-to="window" href="#" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-mini">Login</a></div></div></form></div>'
+        var panel2 = '<div data-role="panel" data-position="right" data-display="reveal" data-theme="a" id="login-form"><form class="loginform"><h2>Login</h2><label for="name">Username:</label><input type="text" name="name" id="name" value="" data-clear-btn="true" data-mini="true"><label for="password">Password:</label><input type="password" name="password1" id="password1" data-clear-btn="true" autocomplete="off" data-mini="true"><div class="ui-grid-a"><div class="ui-block-a"><a href="#sign-up" class="ui-btn ui-shadow ui-corner-all ui-btn-b ui-mini">Sign Up</a></div><div class="ui-block-b"><a onclick="validLogin()" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-mini">Login</a></div></div><div class="ui-grid-a"><div class="ui-block"><a href="#forgot-password" >Forgot Password</a></div></div></form></div>'
 
-        $(document).one('pagebeforecreate', function () {
+        $(document).one('pagebeforecreate', function() {
             $.mobile.pageContainer.append(panel1);
             $.mobile.pageContainer.append(panel2);
             $("#nav-home").panel().enhanceWithin();
             $("#login-form").panel().enhanceWithin();
 
             $("#dlg-invalid-credentials").enhanceWithin().popup();
-        });
+            $("#error-message").enhanceWithin().popup();
 
+        });
     </script>
 
 </head>
+
 <body>
 
-<div data-role="page" class="jqm-demos ui-responsive-panel" id="introduction-page" data-title="mCompute Homepage">
+    <div data-role="page" class="jqm-demos ui-responsive-panel" id="introduction-page" data-title="mCompute Homepage">
 
-    <div data-role="header">
-        <h1>Welcome to mCompute</h1>
-        <a href="#nav-home"  data-icon="bars" data-iconpos="notext" >
+        <div data-role="header">
+            <h1>Welcome to mCompute</h1>
+            <a href="#nav-home" data-icon="bars" data-iconpos="notext">
             Menu
         </a>
-        <a href="#login-form" data-icon="user" data-iconpos="notext" >
+            <a href="#login-form" data-icon="user" data-iconpos="notext">
             Login
         </a>
 
-    </div><!-- /header -->
-    
-    <div style="padding: 0;" class="ui-content jqm-fullwidth">
-        <div id="jssor_1" style="position: relative; margin: 0 0; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
-            <!-- Loading Screen -->
-            <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
-                <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-                <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
-            </div>
-            <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden;">
-                <div data-p="112.50" style="display: none;">
-                    <img data-u="image" src="../images/slider/01.jpg" />
-                </div>
-                <div data-p="112.50" style="display: none;">
-                    <img data-u="image" src="../images/slider/02.jpg" />
-                </div>
-                <div data-p="112.50" style="display: none;">
-                    <img data-u="image" src="../images/slider/03.jpg" />
-                </div>
-                <div data-p="112.50" style="display: none;">
-                    <img data-u="image" src="../images/slider/04.jpg" />
-                </div>            
-            </div>
-            <!-- Bullet Navigator -->
-            <div data-u="navigator" class="jssorb01" style="bottom:16px;right:16px;">
-                <div data-u="prototype" style="width:12px;height:12px;"></div>
-            </div>
-            <!-- Arrow Navigator -->
-            <span data-u="arrowleft" class="jssora05l" style="top:0px;left:8px;width:40px;height:40px;" data-autocenter="2"></span>
-            <span data-u="arrowright" class="jssora05r" style="top:0px;right:8px;width:40px;height:40px;" data-autocenter="2"></span>
         </div>
-    </div><!-- /slider ends -->
+        <!-- /header -->
 
-    <div role="main" class="ui-content jqm-content jqm-fullwidth">
+        <div style="padding: 0;" class="ui-content jqm-fullwidth">
+            <div id="jssor_1" style="position: relative; margin: 0 0; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
+                <!-- Loading Screen -->
+                <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+                    <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+                    <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+                </div>
+                <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden;">
+                    <div data-p="112.50" style="display: none;">
+                        <img data-u="image" src="../images/slider/01.png" />
+                    </div>
+                    <div data-p="112.50" style="display: none;">
+                        <img data-u="image" src="../images/slider/02.png" />
+                    </div>
+                    <div data-p="112.50" style="display: none;">
+                        <img data-u="image" src="../images/slider/03.jpeg" />
+                    </div>
+                    <div data-p="112.50" style="display: none;">
+                        <img data-u="image" src="../images/slider/04.jpg" />
+                    </div>
+                    <div data-p="112.50" style="display: none;">
+                        <img data-u="image" src="../images/slider/05.png" />
+                    </div>
+                </div>
+                <!-- Bullet Navigator -->
+                <div data-u="navigator" class="jssorb01" style="bottom:16px;right:16px;">
+                    <div data-u="prototype" style="width:12px;height:12px;"></div>
+                </div>
+                <!-- Arrow Navigator -->
+                <span data-u="arrowleft" class="jssora05l" style="top:0px;left:8px;width:40px;height:40px;" data-autocenter="2"></span>
+                <span data-u="arrowright" class="jssora05r" style="top:0px;right:8px;width:40px;height:40px;" data-autocenter="2"></span>
+            </div>
+        </div>
+        <!-- /slider ends -->
 
-    	<h1>Intro to mCompute Application</h1>
-        <hr/>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            
-	</div><!-- /content -->
+        <div role="main" class="ui-content jqm-content jqm-fullwidth">
 
-</div><!-- /page -->
+            <h1>Intro to mCompute Application</h1>
+            <hr/>
+            <p>Welcome to Compute My Grade - Mobile Application for easy grade management for students and teachers.</p>
 
-
-
-<div data-role="page" class="jqm-demos ui-responsive-panel" id="about-us" data-title="About Us">
-
-    <div data-role="header">
-        <h1>About Us</h1>
-        <a href="#nav-home"  data-icon="bars" data-iconpos="notext" >
-            Menu
-        </a>
-        <a href="#login-form" data-icon="user" data-iconpos="notext" >
-            Login
-        </a>
-
-    </div><!-- /header -->
-
-    <div role="main" class="ui-content jqm-content jqm-fullwidth">
-
-        <h1 id="about" >About Us</h1>
-        <hr/>
-        <p  >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-
-    </div>
-
-</div>
-
-
-
-
-<div data-role="page" class="jqm-demos ui-responsive-panel" id="team" data-title="Team">
-
-    <div data-role="header">
-        <h1>Team</h1>
-        <a href="#nav-home"  data-icon="bars" data-iconpos="notext" >
-            Menu
-        </a>
-        <a href="#login-form" data-icon="user" data-iconpos="notext" >
-            Login
-        </a>
-
-    </div><!-- /header -->
-
-    <div role="main" class="ui-content jqm-content jqm-fullwidth">
-
-        <h1 id="team" >Team</h1>
-        <hr/>
-        <p  >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
+        </div>
+        <!-- /content -->
 
     </div>
-
-</div>
-
+    <!-- /page -->
 
 
 
+    <div data-role="page" class="jqm-demos ui-responsive-panel" id="about-us" data-title="About Us">
 
-<div data-role="page" class="jqm-demos ui-responsive-panel" id="contact-us" data-title="Contact Us">
-
-    <div data-role="header">
-        <h1>Contact Us</h1>
-        <a href="#nav-home"  data-icon="bars" data-iconpos="notext" >
+        <div data-role="header">
+            <h1>About Us</h1>
+            <a href="#nav-home" data-icon="bars" data-iconpos="notext">
             Menu
         </a>
-        <a href="#login-form" data-icon="user" data-iconpos="notext" >
+            <a href="#login-form" data-icon="user" data-iconpos="notext">
             Login
         </a>
 
-    </div><!-- /header -->
+        </div>
+        <!-- /header -->
 
-    <div role="main" class="ui-content jqm-content jqm-fullwidth">
+        <div role="main" class="ui-content jqm-content jqm-fullwidth">
 
-        <h1 id="contact-us" >Contact Us</h1>
-        <hr/>
-        <div id="contactform">
-            <form data-parsley-validate method="post" action="mail.php">
-              Name: <input type="text" id="naam" name="naam" value="" placeholder="Name" required/>
-              <br>
-              E-mail: <input type="email" id="mail" name="mail" value="" placeholder="E-mail" required/>
-              <br>
-              Phone Number: <input type="tel" id="telefoon" name="telefoon" value="" placeholder="Phone"/>
-              <br>
-              Subject: <input type="text" id="subject" name="subject" value="" placeholder="Subject" required/>
-              <br>
-              Message:
-              <br>
-              <textarea style="height:100px;" id="message" name="message" placeholder="Enter your message here..." required></textarea> 
-              <br>
-              <input type="submit" value="Send" name="submit" class="btn">
-             </form>
+            <h1 id="about">About Us</h1>
+            <hr/>
         </div>
     </div>
 
-</div>
 
 
 
+    <div data-role="page" class="jqm-demos ui-responsive-panel" id="team" data-title="Team">
 
+        <div data-role="header">
+            <h1>Team</h1>
+            <a href="#nav-home" data-icon="bars" data-iconpos="notext">
+            Menu
+        </a>
+            <a href="#login-form" data-icon="user" data-iconpos="notext">
+            Login
+        </a>
+        
+        
 
-<!-- login error popup -->
-<div data-role="popup" id="dlg-invalid-credentials" data-dismissible="false" data-theme="a" style="max-width:400px;">
-        <div role="main" class="ui-content">
-            <h3 class="mc-text-danger">Login Failed</h3>
-            <p>Please enter the correct credentials</p>
-            <div class="mc-text-center"><a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">Close</a></div>
         </div>
+        <!-- /header -->
+
+        <div role="main" class="ui-content jqm-content jqm-fullwidth">
+
+            <h1 id="team">Team</h1>
+            <hr/>
+            <p>Team Members:
+                <br>
+
+                <table>
+                    <tr>
+                        <td class="tableData"><img src="../images/slider/shukla.jpg" class="aboutProfileImage" /></td>
+
+                        <td class="tableData">Arjun Shukla</td>
+
+                        <td class="tableData">
+                            <a href="https://github.com/arjunshukla" target="_blank">
+                                <img src="../images/slider/github.png" class="gitHubImage" alt="GitHub">
+                            </a>
+                        </td>
+
+                        <td class="tableData">
+                            <a href="https://www.linkedin.com/in/arjunshukla" target="_blank">
+                                <img src="../images/slider/linkedin.png" class="gitHubImage" alt="LinkedIn"> </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="tableData"><img src="../images/slider/kaur.JPG" class="aboutProfileImage" /></td>
+
+                        <td class="tableData">Ishneet Kaur</td>
+
+                        <td class="tableData">
+                            <a href="https://github.com/Ishneetkaur" target="_blank">
+                                <img src="../images/slider/github.png" class="gitHubImage" alt="GitHub">
+                            </a>
+                        </td>
+
+                        <td class="tableData">
+                            <a href="https://www.linkedin.com/in/kaurishneet" target="_blank">
+                                <img src="../images/slider/linkedin.png" class="gitHubImage" alt="LinkedIn"> </td>
+
+                    </tr>
+                    <tr>
+                        <td class="tableData"><img src="../images/slider/jha.jpeg" class="aboutProfileImage" /></td>
+
+                        <td class="tableData">Piyush Jha</td>
+
+                        <td class="tableData">
+                            <a href="https://github.com/piyush218" target="_blank">
+                                <img src="../images/slider/github.png" class="gitHubImage" alt="GitHub">
+                            </a>
+                        </td>
+
+                        <td class="tableData">
+                            <a href="https://www.linkedin.com/in/piyushjha1" target="_blank">
+                                <img src="../images/slider/linkedin.png" class="gitHubImage" alt="LinkedIn"> </td>
+
+                    </tr>
+                    <tr>
+                        <td class="tableData"><img src="../images/slider/desai.jpg" class="aboutProfileImage" /></td>
+
+                        <td class="tableData"> Vishwa Desai</td>
+
+                        <td class="tableData">
+                            <a href="https://github.com/vpdesai21" target="_blank">
+                                <img src="../images/slider/github.png" class="gitHubImage" alt="GitHub">
+                            </a>
+                        </td>
+
+                        <td class="tableData">
+                            <a href="https://www.linkedin.com/in/vishwadesai" target="_blank">
+                                <img src="../images/slider/linkedin.png" class="gitHubImage" alt="LinkedIn"> </td>
+                    </tr>
+                </table>
+
+            </p>
+
+        </div>
+
     </div>
 
+    <div data-role="page" class="jqm-demos ui-responsive-panel" id="payments" data-title="Payments">
+
+        <div data-role="header">
+            <h1>Payments</h1>
+            <a href="#nav-home" data-icon="bars" data-iconpos="notext">
+            Menu
+        </a>
+            <a href="#login-form" data-icon="user" data-iconpos="notext">
+            Login
+        </a>
+
+        </div>
+        <!-- /header -->
+
+        <div role="main" class="ui-content jqm-content jqm-fullwidth">
+
+            <h1 id="payments">Payments</h1>
+            <hr/>
+            <p>You can submit payments for the app service charge.</p>
+            <form id="checkout" method="post" action="/checkout">
+                <div id="payment-form"></div>
+                <input type="submit" value="Pay $10">
+            </form>
+
+
+        </div>
+
+    </div>
+
+
+
+    <div data-role="page" class="jqm-demos ui-responsive-panel" id="contact-us" data-title="Contact Us">
+
+        <div data-role="header">
+            <h1>Contact Us</h1>
+            <a href="#nav-home" data-icon="bars" data-iconpos="notext">
+            Menu
+        </a>
+            <a href="#login-form" data-icon="user" data-iconpos="notext">
+            Login
+        </a>
+
+        </div>
+        <!-- /header -->
+
+        <div role="main" class="ui-content jqm-content jqm-fullwidth">
+
+            <h1 id="contact-us">Contact Us</h1>
+            <hr/>
+            <div id="contactform">
+                <form data-parsley-validate method="post" action="mail.php">
+                    Name:
+                    <input type="text" id="naam" name="naam" value="" placeholder="Name" required/>
+                    <br> E-mail:
+                    <input type="email" id="mail" name="mail" value="" placeholder="E-mail" required/>
+                    <br> Phone Number:
+                    <input type="tel" id="telefoon" name="telefoon" value="" placeholder="Phone" />
+                    <br> Subject:
+                    <input type="text" id="subject" name="subject" value="" placeholder="Subject" required/>
+                    <br> Message:
+                    <br>
+                    <textarea style="height:100px;" id="message" name="message" placeholder="Enter your message here..." required></textarea>
+                    <br>
+                    <input type="submit" value="Send" name="submit" class="btn">
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div data-role="page" class="jqm-demos ui-responsive-panel" id="sign-up" data-title="Sign Up">
+
+        <div data-role="header">
+            <h1>Contact Us</h1>
+            <a href="#nav-home" data-icon="bars" data-iconpos="notext">
+            Menu
+        </a>
+            <a href="#login-form" data-icon="user" data-iconpos="notext">
+            Login
+        </a>
+
+        </div>
+        <!-- /header -->
+
+        <div role="main" class="ui-content jqm-content jqm-fullwidth">
+
+            <h1 id="contact-us">Sign Up</h1>
+            <hr/>
+            <form id="registerForm" method="post" action="../../backend/register.php" onsubmit="return validateForm()">
+                <table class="form-layout">
+                    <tr>
+                        <td colspan="2" class="form-text-layout">
+                            Username :
+                            <input type="email" class="stored form-text" name="userMail" id="userMail" placeholder="Username (Email Address)" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="form-text-layout">
+                            Student ID:
+                            <input type="text" class="stored form-text" name="studentId" id="studentId" placeholder="Student ID" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="form-text-layout">
+                            Name :
+                            <input type="text" class="stored form-text" name="fullname" id="fullname" placeholder="Full Name" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="form-text-layout">
+                            Phone # :
+                            <input type="number" class="stored form-text" name="phone" id="phone" placeholder="Phone Number" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="form-text-layout">
+                            Password :
+                            <input type="password" class="stored form-text" name="password" id="password" placeholder="Password" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="form-text-layout">
+                            Confirm Password :
+                            <input type="password" class="stored form-text" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="form-text-layout">
+                            <input type="checkbox" name="acknowledgement" id="acknowledgement" required/>
+                        </td>
+                        <td style="padding-left: 40px;" class="form-text-layout">
+                            I agree to all the terms and conditions
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="form-text-layout">
+                            <input type="submit" id="submit" value="Register" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+    <div data-role="page" class="jqm-demos ui-responsive-panel" id="forgot-password" data-title="Forgot Password">
+
+        <div data-role="header">
+            <h1>Forgot Password</h1>
+            <a href="#nav-home" data-icon="bars" data-iconpos="notext">
+            Menu
+        </a>
+            <a href="#login-form" data-icon="user" data-iconpos="notext">
+            Login
+        </a>
+
+        </div>
+        <!-- /header -->
+
+        <div role="main" class="ui-content jqm-content jqm-fullwidth">
+
+            <h1>Forgot Password</h1>
+            <hr/>
+            <form id="forgotPasswordForm" method="post" action="../../backend/forgotPassword.php">
+                <table class="form-layout">
+                    <tr>
+                        <td colspan="2" class="form-text-layout">
+                            Please enter your E-Mail ID or username below to receive a temporary password
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="form-text-layout">
+                            Username :
+                            <input type="email" class="stored form-text" name="userMail" id="userMail" placeholder="Username (Email Address)" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="form-text-layout">
+                            <input type="submit" value="Submit"/>
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+        </div>
+
+
+
+        <!-- login error popup -->
+        <div data-role="popup" id="dlg-invalid-credentials" data-dismissible="false" data-theme="a" style="max-width:400px;">
+            <div role="main" class="ui-content">
+                <h3 class="mc-text-danger">Login Failed</h3>
+                <p>Please enter the correct credentials</p>
+                <div class="mc-text-center"><a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">Close</a></div>
+            </div>
+        </div>
+
+
+<!-- sign up error popup -->
+        <div data-role="popup" id="error-message" data-dismissible="false" data-theme="a" style="max-width:400px;">
+            <div role="main" class="ui-content">
+                <h3 class="mc-text-danger">Sign Up Errord</h3>
+                <p>Please enter the correct details</p>
+                <div class="mc-text-center"><a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">Close</a></div>
+            </div>
+        </div>
 
 
 </body>
+
 </html>

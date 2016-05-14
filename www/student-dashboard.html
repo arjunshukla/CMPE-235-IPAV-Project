@@ -4,27 +4,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>mCompute</title>
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="./favicon.ico">
 
     <!-- STYLES -->
-    <link rel="stylesheet" href="../css/themes/default/jquery.mobile-1.4.5.min.css">
-    <link rel="stylesheet" href="../_assets/css/jqm-demos.css">
+    <link rel="stylesheet" href="./css/themes/default/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="./_assets/css/jqm-demos.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="./css/custom.css">
 
     <!-- SCRIPTS -->
-	<script type="text/javascript" src="../js/jquery.js"></script>
-    <script type="text/javascript" src="../_assets/js/index.js"></script>
-    <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
-    <script type="text/javascript" src="../js/jssor.slider.mini.js"></script>
-    <script type="text/javascript" src="../js/custom.js"></script>
+	<script type="text/javascript" src="./js/jquery.js"></script>
+    <script type="text/javascript" src="./_assets/js/index.js"></script>
+    <script type="text/javascript" src="./js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="./js/jssor.slider.mini.js"></script>
+    <script type="text/javascript" src="./js/custom.js"></script>
 
 
     <script type="text/javascript">
         var panel1 = '<div data-role="panel" data-display="push" data-theme="b" id="course-list"><ul data-role="listview"><li data-icon="home"><a href="#student-dashboard" data-rel="close">Overview</a></li><li data-icon="check"><a href="#cmpe235">CMPE 235</a></li><li data-icon="check"><a href="#cmpe285">CMPE 285</a></li><li data-icon="check"><a href="#cmpe295a">CMPE 295A</a></li><li data-icon="check"><a href="#cmpe295b">CMPE 295B</a></li></ul></div>';
 
 
-        var panel2 = '<div data-role="panel" data-position="right" data-display="reveal" data-theme="a" id="user-menu"><ul data-role="listview"><li data-icon="home"><a href="#student-dashboard" data-rel="close">Overview</a></li><li data-icon="user"><a href="#">Account Settings</a></li><li data-icon="bullets"><a href="#">Notifications</a></li><li data-icon="info"><a href="#">Help</a></li><li data-icon="power"><a href="#">Logout</a></li></ul></div>';
+        var panel2 = '<div data-role="panel" data-position="right" data-display="reveal" data-theme="a" id="user-menu"><ul data-role="listview"><li data-icon="home"><a href="#student-dashboard" data-rel="close">Overview</a></li><li data-icon="user"><a href="#account-settings">Account Settings</a></li><li data-icon="bullets"><a href="#">Notifications</a></li><li data-icon="info"><a href="#">Help</a></li><li data-icon="power"><a href="#">Logout</a></li></ul></div>';
 
         $(document).one('pagebeforecreate', function () {
             $.mobile.pageContainer.append(panel1);
@@ -33,6 +33,48 @@
             $("#user-menu").panel().enhanceWithin();
 
         });
+        
+                      function validateSubmitForm() {
+                    var userMail = document.forms["changePasswordForm"]["userMail"].value;
+                    var oldPassword = document.forms["changePasswordForm"]["oldPassword"].value;
+                    var newPassword = document.forms["changePasswordForm"]["password"].value;
+                    var rePassword = document.forms["changePasswordForm"]["confirmPassword"].value;
+
+                    var dataString = 'name='+ userMail + '&password='+ oldPassword;
+                    $.ajax({
+                             type: "POST",
+                             url: "https://cmpe235ipav-arjunshukla.c9users.io/backend/login.php",
+                             data: dataString,
+                             cache: false,
+                             success: function(result){
+                                 var result=trim(result);
+                                 if(result == "ERROR") {
+                                        $("#wrong-password-message").popup( "open" );  
+                                 } else {
+                                     if(newPassword == rePassword) {
+                                         $.post('https://cmpe235ipav-arjunshukla.c9users.io/backend/updatePassword.php', {
+                                          userMail: userMail,
+                                          password: newPassword
+                                        },
+                                        function(data,status){
+                                            if (data == "student") {
+                                                 window.location = 'student-dashboard.html';
+                                            } else {
+                                                 window.location = 'professor-dashboard.html';
+                                            }
+                                        });
+                                     }
+                                }
+                            }
+                      });
+    
+                }
+            
+                
+                 function trim(str){
+                      var str=str.replace(/^\s+|\s+$/,'');
+                      return str;
+                    }
     </script>
 
 </head>
@@ -73,6 +115,69 @@
 	</div><!-- /content -->
 
 </div><!-- /page -->
+
+
+
+
+<div data-role="page" class="jqm-demos ui-responsive-panel" id="account-settings" data-title="Account Settings">
+
+    <div data-role="header">
+        <h1>Account Settings</h1>
+        <a href="#professor-options"  data-icon="bars" data-iconpos="notext" >
+            Menu
+        </a>
+        <a href="#user-menu" data-icon="gear" data-iconpos="notext" >
+            Settings
+        </a>
+
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content jqm-fullwidth">
+
+        <h1 >Account Settings</h1>
+        <hr/>
+        
+        <form id="changePasswordForm" method="post" action="https://cmpe235ipav-arjunshukla.c9users.io/backend/updatePassword.php" onsubmit="return validateSubmitForm()">
+            <input type="hidden" id="userMail" name="userMail" value="vishwa.desai@sjsu.edu" />
+            <table class="form-layout">
+                <tr>
+                     <td colspan="2" class="form-text-layout">
+                        Old Password :
+                        <input type="password" class="stored form-text" name="oldPassword" id="oldPassword" placeholder="Old Password" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="form-text-layout">
+                        New Password :
+                        <input type="password" class="stored form-text" name="password" id="password" placeholder="New Password" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="form-text-layout">
+                        Confirm Password :
+                        <input type="password" class="stored form-text" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="form-text-layout">
+                        <input type="submit" id="submit" value="Save" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+        
+    </div>
+    
+</div>
+
+
+<div data-role="popup" id="wrong-password-message" data-dismissible="false" data-theme="a" style="max-width:400px;">
+    <div role="main" class="ui-content">
+        <h3 class="mc-text-danger">Incorrect Password</h3>
+        <p>Please enter the correct password</p>
+        <div class="mc-text-center"><a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">Close</a></div>
+    </div>
+</div>
 
 
 

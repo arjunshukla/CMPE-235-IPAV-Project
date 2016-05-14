@@ -5,21 +5,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>mCompute</title>
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="./favicon.ico">
 
     <!-- STYLES -->
-    <link rel="stylesheet" href="../css/themes/default/jquery.mobile-1.4.5.min.css">
-    <link rel="stylesheet" href="../_assets/css/jqm-demos.css">
+    <link rel="stylesheet" href="./css/themes/default/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="./_assets/css/jqm-demos.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="./css/custom.css">
 
     <!-- SCRIPTS -->
-    <script type="text/javascript" src="../js/jquery.js"></script>
-    <script type="text/javascript" src="../_assets/js/index.js"></script>
-    <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
-    <script type="text/javascript" src="../js/jssor.slider.mini.js"></script>
-    <script type="text/javascript" src="../js/custom.js"></script>
-    <script type="text/javascript" src="../js/validations.js"></script>
+    <script type="text/javascript" src="./js/jquery.js"></script>
+    <script type="text/javascript" src="./_assets/js/index.js"></script>
+    <script type="text/javascript" src="./js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="./js/jssor.slider.mini.js"></script>
+    <script type="text/javascript" src="./js/custom.js"></script>
+    <script type="text/javascript" src="./js/validations.js"></script>
     <script src="https://js.braintreegateway.com/js/braintree-2.24.0.min.js"></script>
     <script>
         // We generated a client token for you so you can test out this code
@@ -40,7 +40,7 @@
            var dataString = 'name='+ uname + '&password='+ password;
            $.ajax({
                  type: "POST",
-                 url: "../../backend/login.php",
+                 url: "https://cmpe235ipav-arjunshukla.c9users.io/backend/login.php",
                  data: dataString,
                  cache: false,
                  success: function(result){
@@ -48,9 +48,9 @@
                  if(result == "ERROR") {
                      $("#dlg-invalid-credentials").popup( "open" );
                  } else if (result == "student") {
-                     window.location = '../www/views/student-dashboard.html';
+                     window.location = 'student-dashboard.html';
                  } else {
-                      window.location = '../www/views/professor-dashboard.html';
+                      window.location = 'professor-dashboard.html';
                  }
                  
                 }
@@ -77,8 +77,13 @@
 
             $("#dlg-invalid-credentials").enhanceWithin().popup();
             $("#error-message").enhanceWithin().popup();
+             $("#phone-validation-message").enhanceWithin().popup();
 
         });
+        
+        
+        
+        
     </script>
 
 </head>
@@ -108,19 +113,19 @@
                 </div>
                 <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden;">
                     <div data-p="112.50" style="display: none;">
-                        <img data-u="image" src="../images/slider/01.png" />
+                        <img data-u="image" src="./images/slider/01.png" />
                     </div>
                     <div data-p="112.50" style="display: none;">
-                        <img data-u="image" src="../images/slider/02.png" />
+                        <img data-u="image" src="./images/slider/02.png" />
                     </div>
                     <div data-p="112.50" style="display: none;">
-                        <img data-u="image" src="../images/slider/03.jpeg" />
+                        <img data-u="image" src="./images/slider/03.jpeg" />
                     </div>
                     <div data-p="112.50" style="display: none;">
-                        <img data-u="image" src="../images/slider/04.jpg" />
+                        <img data-u="image" src="./images/slider/04.jpg" />
                     </div>
                     <div data-p="112.50" style="display: none;">
-                        <img data-u="image" src="../images/slider/05.png" />
+                        <img data-u="image" src="./images/slider/05.png" />
                     </div>
                 </div>
                 <!-- Bullet Navigator -->
@@ -197,68 +202,68 @@
 
                 <table>
                     <tr>
-                        <td class="tableData"><img src="../images/slider/shukla.jpg" class="aboutProfileImage" /></td>
+                        <td class="tableData"><img src="./images/slider/shukla.jpg" class="aboutProfileImage" /></td>
 
                         <td class="tableData">Arjun Shukla</td>
 
                         <td class="tableData">
                             <a href="https://github.com/arjunshukla" target="_blank">
-                                <img src="../images/slider/github.png" class="gitHubImage" alt="GitHub">
+                                <img src="./images/slider/github.png" class="gitHubImage" alt="GitHub">
                             </a>
                         </td>
 
                         <td class="tableData">
                             <a href="https://www.linkedin.com/in/arjunshukla" target="_blank">
-                                <img src="../images/slider/linkedin.png" class="gitHubImage" alt="LinkedIn"> </td>
+                                <img src="./images/slider/linkedin.png" class="gitHubImage" alt="LinkedIn"> </td>
 
                     </tr>
 
                     <tr>
-                        <td class="tableData"><img src="../images/slider/kaur.JPG" class="aboutProfileImage" /></td>
+                        <td class="tableData"><img src="./images/slider/kaur.JPG" class="aboutProfileImage" /></td>
 
                         <td class="tableData">Ishneet Kaur</td>
 
                         <td class="tableData">
                             <a href="https://github.com/Ishneetkaur" target="_blank">
-                                <img src="../images/slider/github.png" class="gitHubImage" alt="GitHub">
+                                <img src="./images/slider/github.png" class="gitHubImage" alt="GitHub">
                             </a>
                         </td>
 
                         <td class="tableData">
                             <a href="https://www.linkedin.com/in/kaurishneet" target="_blank">
-                                <img src="../images/slider/linkedin.png" class="gitHubImage" alt="LinkedIn"> </td>
+                                <img src="./images/slider/linkedin.png" class="gitHubImage" alt="LinkedIn"> </td>
 
                     </tr>
                     <tr>
-                        <td class="tableData"><img src="../images/slider/jha.jpeg" class="aboutProfileImage" /></td>
+                        <td class="tableData"><img src="./images/slider/jha.jpeg" class="aboutProfileImage" /></td>
 
                         <td class="tableData">Piyush Jha</td>
 
                         <td class="tableData">
                             <a href="https://github.com/piyush218" target="_blank">
-                                <img src="../images/slider/github.png" class="gitHubImage" alt="GitHub">
+                                <img src="./images/slider/github.png" class="gitHubImage" alt="GitHub">
                             </a>
                         </td>
 
                         <td class="tableData">
                             <a href="https://www.linkedin.com/in/piyushjha1" target="_blank">
-                                <img src="../images/slider/linkedin.png" class="gitHubImage" alt="LinkedIn"> </td>
+                                <img src="./images/slider/linkedin.png" class="gitHubImage" alt="LinkedIn"> </td>
 
                     </tr>
                     <tr>
-                        <td class="tableData"><img src="../images/slider/desai.jpg" class="aboutProfileImage" /></td>
+                        <td class="tableData"><img src="./images/slider/desai.jpg" class="aboutProfileImage" /></td>
 
                         <td class="tableData"> Vishwa Desai</td>
 
                         <td class="tableData">
                             <a href="https://github.com/vpdesai21" target="_blank">
-                                <img src="../images/slider/github.png" class="gitHubImage" alt="GitHub">
+                                <img src="./images/slider/github.png" class="gitHubImage" alt="GitHub">
                             </a>
                         </td>
 
                         <td class="tableData">
                             <a href="https://www.linkedin.com/in/vishwadesai" target="_blank">
-                                <img src="../images/slider/linkedin.png" class="gitHubImage" alt="LinkedIn"> </td>
+                                <img src="./images/slider/linkedin.png" class="gitHubImage" alt="LinkedIn"> </td>
                     </tr>
                 </table>
 
@@ -318,7 +323,7 @@
             <h1 id="contact-us">Contact Us</h1>
             <hr/>
             <div id="contactform">
-                <form data-parsley-validate method="post" action="mail.php">
+                <form data-parsley-validate method="post" action="">
                     Name:
                     <input type="text" id="naam" name="naam" value="" placeholder="Name" required/>
                     <br> E-mail:
@@ -335,7 +340,6 @@
                 </form>
             </div>
         </div>
-
     </div>
 
 
@@ -358,7 +362,7 @@
 
             <h1 id="contact-us">Sign Up</h1>
             <hr/>
-            <form id="registerForm" method="post" action="../../backend/register.php" onsubmit="return validateRegistrationForm()">
+            <form id="registerForm" method="post" action="" onsubmit="return validateRegistrationForm()">
                 <table class="form-layout">
                     <tr>
                         <td colspan="2" class="form-text-layout">
@@ -436,7 +440,7 @@
 
             <h1>Forgot Password</h1>
             <hr/>
-            <form id="forgotPasswordForm" method="post" action="../../backend/forgotPassword.php">
+            <form id="forgotPasswordForm" method="post" action="" onsubmit="return validateForgotPassword();">
                 <table class="form-layout">
                     <tr>
                         <td colspan="2" class="form-text-layout">
@@ -475,6 +479,16 @@
             <div role="main" class="ui-content">
                 <h3 class="mc-text-danger">Sign Up Error</h3>
                 <p>Please enter the correct details</p>
+                <div class="mc-text-center"><a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">Close</a></div>
+            </div>
+        </div>
+        
+    
+        
+        <div data-role="popup" id="phone-validation-message" data-dismissible="false" data-theme="a" style="max-width:400px;">
+            <div role="main" class="ui-content">
+                <h3 class="mc-text-danger">Validation Code</h3>
+                <p id="validationCode"></p>
                 <div class="mc-text-center"><a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">Close</a></div>
             </div>
         </div>

@@ -26,8 +26,6 @@ $sql = 'INSERT INTO studentScore (emailID ,course, homeworks, labs, project, pre
         . ', final = ' . $_POST['final']
         . ';'; 
 $result = mysqli_query($conn, $sql);
-
+echo "SUCCESS";
 $conn->close();
-header('Location: ../www/views/professor-dashboard.html');
-exit;
 ?>

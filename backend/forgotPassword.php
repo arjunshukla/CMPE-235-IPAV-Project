@@ -24,18 +24,16 @@ if ($result->num_rows > 0) {
     
     require('twilio-php/Services/Twilio.php'); 
  
-    $account_sid = 'AC1455ee0bbd738e954a909af61ecd1139'; 
-    $auth_token = '68f23912666fdd213738678e35742e71'; 
+    $account_sid = 'ACb65b048cff458736d3f6a61a6c9769d9'; 
+    $auth_token = 'c7b12c30bd52eb844a73c3f2cec67a30'; 
     $client = new Services_Twilio($account_sid, $auth_token); 
- 
+    
     $client->account->messages->create(array( 
-    	'To' => "4087149328", 
-    	'From' => "+18442932272", 
+    	'To' => $row["phoneNumber"], 
+    	'From' => "+17315034388", 
     	'Body' => "Hi! " . $row["name"] . "! Your new password is: " . $newPassword,   
     ));
 }
-
+echo "SUCCESS";
 $conn->close();
-header('Location: ../www/views/home.html');
-exit;
 ?>

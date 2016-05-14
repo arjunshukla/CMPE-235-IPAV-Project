@@ -7,21 +7,21 @@
     <link rel="shortcut icon" href="../favicon.ico">
 
     <!-- STYLES -->
-    <link rel="stylesheet" href="../css/themes/default/jquery.mobile-1.4.5.min.css">
-    <link rel="stylesheet" href="../_assets/css/jqm-demos.css">
+    <link rel="stylesheet" href="./css/themes/default/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="./_assets/css/jqm-demos.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="./css/custom.css">
 
     <!-- SCRIPTS -->
-	<script type="text/javascript" src="../js/jquery.js"></script>
-	<script src="../js/highcharts/js/highcharts.js"></script>
-    <script src="../js/highcharts/js/modules/exporting.js"></script>
-    <script type="text/javascript" src="../js/validations.js"></script>
-    <script type="text/javascript" src="../_assets/js/index.js"></script>
-    <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
-    <script type="text/javascript" src="../js/jssor.slider.mini.js"></script>
-    <script type="text/javascript" src="../js/custom.js"></script>
-    <script type="text/javascript" src="../js/professorDashboard.js"></script>
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script src="./js/highcharts/js/highcharts.js"></script>
+    <script src="./js/highcharts/js/modules/exporting.js"></script>
+    <script type="text/javascript" src="./js/validations.js"></script>
+    <script type="text/javascript" src="./_assets/js/index.js"></script>
+    <script type="text/javascript" src="./js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="./js/jssor.slider.mini.js"></script>
+    <script type="text/javascript" src="./js/custom.js"></script>
+    <script type="text/javascript" src="./js/professorDashboard.js"></script>
 
 
     <script type="text/javascript">
@@ -42,51 +42,13 @@
         
                 });
                 
-                
-               function validateSubmitForm() {
-                    var userMail = document.forms["changePasswordForm"]["userMail"].value;
-                    var oldPassword = document.forms["changePasswordForm"]["oldPassword"].value;
-                    var newPassword = document.forms["changePasswordForm"]["password"].value;
-                    var rePassword = document.forms["changePasswordForm"]["confirmPassword"].value;
-
-                    var dataString = 'name='+ userMail + '&password='+ oldPassword;
-                    $.ajax({
-                             type: "POST",
-                             url: "../../backend/login.php",
-                             data: dataString,
-                             cache: false,
-                             success: function(result){
-                                 var result=trim(result);
-                                 if(result == "ERROR") {
-                                        $("#wrong-password-message").popup( "open" );  
-                                 } else {
-                                     if(newPassword == rePassword) {
-                                         $.post('../../backend/updatePassword.php', {
-                                          userMail: userMail,
-                                          password: newPassword
-                                        },
-                                        function(data,status){
-                                            if (data == "student") {
-                                                 window.location = '../www/views/student-dashboard.html';
-                                            } else {
-                                                 window.location = '../www/views/professor-dashboard.html';
-                                            }
-                                        });
-                                     }
-                                }
-                            }
-                      });
+                window.onload = function() {
+                    getListOfStudents();  
     
-                }
-            
+                    getStudentScores();
+                    //loadChart('CMPE-235', []);
                 
-                 function trim(str){
-                      var str=str.replace(/^\s+|\s+$/,'');
-                      return str;
-                    }
-
-
-                
+                };
     </script>
 
 </head>
@@ -149,7 +111,7 @@
         <h1 >Assign Scores</h1>
         <p>Assign scores for each of the below for the students from the select dropdown.</p>
         <hr/>
-        <form id="studentScoresForm" name="studentScoresForm" method="post" action="../../backend/assignScore.php">
+        <form id="studentScoresForm" name="studentScoresForm" method="post" action="" onsubmit="return validateStudentScores()">
             <input type="hidden" name="courseId" id="courseId" value="CMPE-235" />
             <div class="ui-field-contain">
                 <label for="studentList"><strong>Student ID: </strong></label>
@@ -221,7 +183,7 @@
         <p>Configure the maximum points of each of the below factors.</p>
         <hr/>
         
-        <form id="maximumPointsForm" method="post" action="../../backend/maxScore.php">
+        <form id="maximumPointsForm" method="post" action="" onsubmit="return validateMaximumPoints()">
 
             <input type="hidden" name="courseId" id="courseId" value="CMPE-235" />
 
@@ -285,7 +247,7 @@
         <h1 >Percentage Distribution Configuration</h1>
         <p>Configure the weightage of each of the below in determining the final grades of the student.</p>
         <hr/>
-        <form id="percentageDistributionForm" method="post" action="../../backend/percentDist.php">
+        <form id="percentageDistributionForm" method="post" action="" onsubmit="return validatePercentageDist()">
             <input type="hidden" name="courseId" id="courseId" value="CMPE-235" />
 
 
@@ -354,7 +316,7 @@
         <hr/>
         
 
-        <form id="gradeRangeForm" method="post" action="../../backend/gradeRange.php" onsubmit="return validateGradeRanges()">
+        <form id="gradeRangeForm" method="post" action="" onsubmit="return validateGradeRanges()">
             <input type="hidden" name="courseId" id="courseId" value="CMPE-235" />
 
             <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
@@ -456,7 +418,7 @@
         <h1 >Account Settings</h1>
         <hr/>
         
-        <form id="changePasswordForm" method="post" action="../../backend/updatePassword.php" onsubmit="return validateSubmitForm()">
+        <form id="changePasswordForm" method="post" action="https://cmpe235ipav-arjunshukla.c9users.io/backend/updatePassword.php" onsubmit="return validateChangePasswordForm()">
             <input type="hidden" id="userMail" name="userMail" value="vishwa.desai@sjsu.edu" />
             <table class="form-layout">
                 <tr>

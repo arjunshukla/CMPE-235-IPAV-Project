@@ -10,32 +10,32 @@ if ($conn->connect_error) {
 } 
 
 $sql = 'UPDATE scores'
-        . ' SET maxScore = ' . $_POST['homeworks']
+        . ' SET maxScore = ' . $_POST['homeworksMP']
         . ' WHERE scoreType=\'Homeworks\';';
 $result = mysqli_query($conn, $sql);
 
 $sql = 'UPDATE scores'
-        . ' SET maxScore = ' . $_POST['labs']
+        . ' SET maxScore = ' . $_POST['labsMP']
         . ' WHERE scoreType=\'Labs\';';
 $result = mysqli_query($conn, $sql);
 
 $sql = 'UPDATE scores'
-        . ' SET maxScore = ' . $_POST['project']
+        . ' SET maxScore = ' . $_POST['projectMP']
         . ' WHERE scoreType=\'Project\';';
 $result = mysqli_query($conn, $sql);
 
 $sql = 'UPDATE scores'
-        . ' SET maxScore = ' . $_POST['presentation']
+        . ' SET maxScore = ' . $_POST['presentationMP']
         . ' WHERE scoreType=\'Presentation\';';
 $result = mysqli_query($conn, $sql);
 
 $sql = 'UPDATE scores'
-        . ' SET maxScore = ' . $_POST['midterm']
+        . ' SET maxScore = ' . $_POST['midtermMP']
         . ' WHERE scoreType=\'Midterm\';';
 $result = mysqli_query($conn, $sql);
 
 $sql = 'UPDATE scores'
-        . ' SET maxScore = ' . $_POST['final']
+        . ' SET maxScore = ' . $_POST['finalMP']
         . ' WHERE scoreType=\'Final\';';
 $result = mysqli_query($conn, $sql);
 

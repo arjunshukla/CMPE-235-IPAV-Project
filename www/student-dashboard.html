@@ -9,7 +9,6 @@
     <!-- STYLES -->
     <link rel="stylesheet" href="./css/themes/default/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" href="./_assets/css/jqm-demos.css">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
     <link rel="stylesheet" href="./css/custom.css">
 
     <!-- SCRIPTS -->
@@ -18,63 +17,33 @@
     <script type="text/javascript" src="./js/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="./js/jssor.slider.mini.js"></script>
     <script type="text/javascript" src="./js/custom.js"></script>
+    <script type="text/javascript" src="./js/studentDashboard.js"></script>
+
 
 
     <script type="text/javascript">
-        var panel1 = '<div data-role="panel" data-display="push" data-theme="b" id="course-list"><ul data-role="listview"><li data-icon="home"><a href="#student-dashboard" data-rel="close">Overview</a></li><li data-icon="check"><a href="#cmpe235">CMPE 235</a></li><li data-icon="check"><a href="#cmpe285">CMPE 285</a></li><li data-icon="check"><a href="#cmpe295a">CMPE 295A</a></li><li data-icon="check"><a href="#cmpe295b">CMPE 295B</a></li></ul></div>';
+        window.onload = function() {
+            getStudentData();
+            getStudentCourses();  
+        };
+        
+        var panel11 = '<div data-role="panel" data-display="push" data-theme="b" id="student-options"><ul data-role="listview"><li data-icon="home"><a href="#student-dashboard" data-rel="close">Dashboard</a></li><li data-icon="camera"><a href="#view-courses">Courses</a></li></ul></div>';
 
 
-        var panel2 = '<div data-role="panel" data-position="right" data-display="reveal" data-theme="a" id="user-menu"><ul data-role="listview"><li data-icon="home"><a href="#student-dashboard" data-rel="close">Overview</a></li><li data-icon="user"><a href="#account-settings">Account Settings</a></li><li data-icon="bullets"><a href="#">Notifications</a></li><li data-icon="info"><a href="#">Help</a></li><li data-icon="power"><a href="#">Logout</a></li></ul></div>';
+        var panel21 = '<div data-role="panel" data-position="right" data-display="reveal" data-theme="a" id="user-menu"><ul data-role="listview"><li data-icon="home"><a href="#student-dashboard" data-rel="close">Dashboard</a></li><li data-icon="user"><a href="#account-settings">Account Settings</a></li><li data-icon="power"><a href="#" onclick="resetSession()">Logout</a></li></ul></div>';
 
         $(document).one('pagebeforecreate', function () {
-            $.mobile.pageContainer.append(panel1);
-            $.mobile.pageContainer.append(panel2);
-            $("#course-list").panel().enhanceWithin();
+            $.mobile.pageContainer.append(panel11);
+            $.mobile.pageContainer.append(panel21);
+            $("#student-options").panel().enhanceWithin();
             $("#user-menu").panel().enhanceWithin();
+            
+            $('#wrong-password-message').enhanceWithin().popup();
+
 
         });
         
-                      function validateSubmitForm() {
-                    var userMail = document.forms["changePasswordForm"]["userMail"].value;
-                    var oldPassword = document.forms["changePasswordForm"]["oldPassword"].value;
-                    var newPassword = document.forms["changePasswordForm"]["password"].value;
-                    var rePassword = document.forms["changePasswordForm"]["confirmPassword"].value;
-
-                    var dataString = 'name='+ userMail + '&password='+ oldPassword;
-                    $.ajax({
-                             type: "POST",
-                             url: "https://cmpe235ipav-arjunshukla.c9users.io/backend/login.php",
-                             data: dataString,
-                             cache: false,
-                             success: function(result){
-                                 var result=trim(result);
-                                 if(result == "ERROR") {
-                                        $("#wrong-password-message").popup( "open" );  
-                                 } else {
-                                     if(newPassword == rePassword) {
-                                         $.post('https://cmpe235ipav-arjunshukla.c9users.io/backend/updatePassword.php', {
-                                          userMail: userMail,
-                                          password: newPassword
-                                        },
-                                        function(data,status){
-                                            if (data == "student") {
-                                                 window.location = 'student-dashboard.html';
-                                            } else {
-                                                 window.location = 'professor-dashboard.html';
-                                            }
-                                        });
-                                     }
-                                }
-                            }
-                      });
-    
-                }
-            
-                
-                 function trim(str){
-                      var str=str.replace(/^\s+|\s+$/,'');
-                      return str;
-                    }
+         
     </script>
 
 </head>
@@ -84,7 +53,7 @@
 
     <div data-role="header">
         <h1>Student Dashboard</h1>
-        <a href="#course-list"  data-icon="bars" data-iconpos="notext" >
+        <a href="#student-options"  data-icon="bars" data-iconpos="notext" >
             Menu
         </a>
         <a href="#user-menu" data-icon="gear" data-iconpos="notext" >
@@ -100,15 +69,14 @@
 
             </div>
             <div class="avatar">
-                <img alt="" src="http://lorempixel.com/100/100/people/9/">
+                <img alt="" src="http://lorempixel.com/100/100/people/1/">
             </div>
             <div class="info">
-                <div class="title">
-                    <a target="_blank" href="#">Jane Doe</a>
+                <div id="userName" class="title">
                 </div>
-                <div class="desc"><strong>Student ID :</strong> 0100XXXXX09</div>
-                <div class="desc"><strong>E-Mail ID :</strong> v*******.d******@sjsu.edu</div>
-                <div class="desc"><strong>Phone # :</strong> (6**)2**-8***</div>
+                <div class="desc"><strong>Student ID :</strong> <span id="studentId"></span></div>
+                <div class="desc"><strong>E-Mail ID :</strong> <span id="userMail"></span></div>
+                <div class="desc"><strong>Phone # :</strong> <span id="phoneNumber"></span></div>
             </div>
         </div>
             
@@ -123,7 +91,7 @@
 
     <div data-role="header">
         <h1>Account Settings</h1>
-        <a href="#professor-options"  data-icon="bars" data-iconpos="notext" >
+        <a href="#student-options"  data-icon="bars" data-iconpos="notext" >
             Menu
         </a>
         <a href="#user-menu" data-icon="gear" data-iconpos="notext" >
@@ -137,8 +105,7 @@
         <h1 >Account Settings</h1>
         <hr/>
         
-        <form id="changePasswordForm" method="post" action="https://cmpe235ipav-arjunshukla.c9users.io/backend/updatePassword.php" onsubmit="return validateSubmitForm()">
-            <input type="hidden" id="userMail" name="userMail" value="vishwa.desai@sjsu.edu" />
+        <form id="changePasswordForm" method="post" action="" onsubmit="return validateChangePasswordForm()">
             <table class="form-layout">
                 <tr>
                      <td colspan="2" class="form-text-layout">
@@ -171,6 +138,39 @@
 </div>
 
 
+
+<div data-role="page" class="jqm-demos ui-responsive-panel" id="view-courses" data-title="Courses">
+
+    <div data-role="header">
+        <h1>Courses</h1>
+        <a href="#course-list"  data-icon="bars" data-iconpos="notext" >
+            Menu
+        </a>
+        <a href="#user-menu" data-icon="gear" data-iconpos="notext" >
+            Settings
+        </a>
+   </div><!-- /header -->
+    
+
+    <div role="main" class="ui-content jqm-content jqm-fullwidth">
+        
+        <div class="ui-field-contain">
+            <label for="studentList"><strong>Course: </strong></label>
+            <select name="courseList" id="courseList" onchange="displayCourse()" data-mini="true">
+            </select>
+        </div>
+        
+        
+        <div id="coursesContainer">
+            
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
 <div data-role="popup" id="wrong-password-message" data-dismissible="false" data-theme="a" style="max-width:400px;">
     <div role="main" class="ui-content">
         <h3 class="mc-text-danger">Incorrect Password</h3>
@@ -179,123 +179,6 @@
     </div>
 </div>
 
-
-
-
-<div data-role="page" class="jqm-demos ui-responsive-panel" id="cmpe235" data-title="CMPE 235">
-
-    <div data-role="header">
-        <h1>CMPE 235</h1>
-        <a href="#course-list"  data-icon="bars" data-iconpos="notext" >
-            Menu
-        </a>
-        <a href="#user-menu" data-icon="gear" data-iconpos="notext" >
-            Settings
-        </a>
-
-    </div><!-- /header -->
-
-    <div role="main" class="ui-content jqm-content jqm-fullwidth">
-
-        <h1 id="about" >Course Details</h1>
-        <hr/>
-        <p><strong>Term :</strong> Spring 2016</p>
-        <p><strong>Instructor :</strong> Richard Sinn</p>
-        <p><strong>Description :</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p><strong>Grades :</strong> A</p>
-
-
-    </div>
-
-</div>
-
-
-
-
-
-<div data-role="page" class="jqm-demos ui-responsive-panel" id="cmpe285" data-title="CMPE 285">
-
-    <div data-role="header">
-        <h1>CMPE 285</h1>
-        <a href="#course-list"  data-icon="bars" data-iconpos="notext" >
-            Menu
-        </a>
-        <a href="#user-menu" data-icon="gear" data-iconpos="notext" >
-            Settings
-        </a>
-
-    </div><!-- /header -->
-
-    <div role="main" class="ui-content jqm-content jqm-fullwidth">
-
-        <h1 id="about" >Course Details</h1>
-        <hr/>
-        <p><strong>Term :</strong> Spring 2016</p>
-        <p><strong>Instructor :</strong> Richard Sinn</p>
-        <p><strong>Description :</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p><strong>Grades :</strong> A</p>
-
-    </div>
-
-</div>
-
-
-
-<div data-role="page" class="jqm-demos ui-responsive-panel" id="cmpe295a" data-title="CMPE 295 A">
-
-    <div data-role="header">
-        <h1>CMPE 295 A</h1>
-        <a href="#course-list"  data-icon="bars" data-iconpos="notext" >
-            Menu
-        </a>
-        <a href="#user-menu" data-icon="gear" data-iconpos="notext" >
-            Settings
-        </a>
-
-    </div><!-- /header -->
-
-    <div role="main" class="ui-content jqm-content jqm-fullwidth">
-
-        <h1 id="about" >Course Details</h1>
-        <hr/>
-        <p><strong>Term :</strong> Spring 2016</p>
-        <p><strong>Instructor :</strong> Richard Sinn</p>
-        <p><strong>Description :</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p><strong>Grades :</strong> A</p>        
-
-    </div>
-
-</div>
-
-
-
-
-<div data-role="page" class="jqm-demos ui-responsive-panel" id="cmpe295b" data-title="CMPE 295 B">
-
-    <div data-role="header">
-        <h1>CMPE 295 B</h1>
-        <a href="#course-list"  data-icon="bars" data-iconpos="notext" >
-            Menu
-        </a>
-        <a href="#user-menu" data-icon="gear" data-iconpos="notext" >
-            Settings
-        </a>
-
-    </div><!-- /header -->
-
-    <div role="main" class="ui-content jqm-content jqm-fullwidth">
-
-        <h1 id="about" >Course Details</h1>
-        <hr/>
-        <p><strong>Term :</strong> Spring 2016</p>
-        <p><strong>Instructor :</strong> Richard Sinn</p>
-        <p><strong>Description :</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p><strong>Grades :</strong> A</p>
-
-
-    </div>
-
-</div>
 
 </body>
 </html>

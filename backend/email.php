@@ -1,35 +1,17 @@
 <?php
-// Pear Mail Library
-// require_once ".:/usr/share/php:/usr/share/pear/Mail.php";
-// include_once("Mail.php");
-// include('.:/usr/share/php:/usr/share/pear/Mail.php');
+require_once '../vendor/swiftmailer/swiftmailer/lib/swift_required.php';
 
-require_once (__DIR__."Mail.php");
+$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl")
+  ->setUsername('cmpe235ipav')
+  ->setPassword('coolprofsinn');
 
-$from = 'cmpe235ipav@gmail.com';
-$to = 'arjun.shukla@sjsu.edu';
-$subject = 'Hi!';
-$body = "Hi,\n\nHow are you?";
+$mailer = Swift_Mailer::newInstance($transport);
 
-$headers = array(
-    'From' => $from,
-    'To' => $to,
-    'Subject' => $subject
-);
+$message = Swift_Message::newInstance('Test Subject')
+  ->setFrom(array('cmpe235ipav@gmail.com' => 'ABC'))
+  ->setTo(array('arjun.shukla@sjsu.edu'))
+  ->setBody('This is a test mail.');
 
-$smtp = Mail::factory('smtp', array(
-        'host' => 'ssl://smtp.gmail.com',
-        'port' => '465',
-        'auth' => true,
-        'username' => 'cmpe235ipav@gmail.com',
-        'password' => 'coolprofsinn'
-    ));
-
-$mail = $smtp->send($to, $headers, $body);
-
-if (PEAR::isError($mail)) {
-    echo('<p>' . $mail->getMessage() . '</p>');
-} else {
-    echo('<p>Message successfully sent!</p>');
-}
+$result = $mailer->send($message);
 ?>
+

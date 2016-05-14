@@ -24,15 +24,30 @@ if ($result->num_rows > 0) {
     
     require('twilio-php/Services/Twilio.php'); 
  
-    $account_sid = 'ACb65b048cff458736d3f6a61a6c9769d9'; 
-    $auth_token = 'c7b12c30bd52eb844a73c3f2cec67a30'; 
+    $account_sid = 'AC0372d38714d2a97a6f7adc26d844dcbb'; 
+    $auth_token = '7955650e0e877d4b8ebba4ebc0962d87'; 
     $client = new Services_Twilio($account_sid, $auth_token); 
     
     $client->account->messages->create(array( 
     	'To' => $row["phoneNumber"], 
-    	'From' => "+17315034388", 
+    	'From' => "+17035963102", 
     	'Body' => "Hi! " . $row["name"] . "! Your new password is: " . $newPassword,   
     ));
+    
+    require_once '../vendor/swiftmailer/swiftmailer/lib/swift_required.php';
+
+    $transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl")
+      ->setUsername('cmpe235ipav')
+      ->setPassword('coolprofsinn');
+    
+    $mailer = Swift_Mailer::newInstance($transport);
+    
+    $message = Swift_Message::newInstance('Reset Password')
+      ->setFrom(array('cmpe235ipav@gmail.com' => 'mCompute'))
+      ->setTo(array($_POST['userMail']))
+      ->setBody('Hi! ' . $row["name"] . '! Your new password is: ' . $newPassword);
+    
+    $resultn = $mailer->send($message);
 }
 echo "SUCCESS";
 $conn->close();

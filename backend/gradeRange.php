@@ -35,6 +35,5 @@ $sql = 'UPDATE gradeRange'
 $result = mysqli_query($conn, $sql);
 
 $conn->close();
-header('Location: ../www/views/professor-dashboard.html');
-exit;
+echo("SUCCESS");
 ?>

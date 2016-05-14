@@ -20,16 +20,19 @@ $result = mysqli_query($conn, $sql);
 
 require('twilio-php/Services/Twilio.php'); 
  
-$account_sid = 'ACb65b048cff458736d3f6a61a6c9769d9'; 
-$auth_token = 'c7b12c30bd52eb844a73c3f2cec67a30'; 
+$account_sid = 'AC0372d38714d2a97a6f7adc26d844dcbb'; 
+$auth_token = '7955650e0e877d4b8ebba4ebc0962d87'; 
 $client = new Services_Twilio($account_sid, $auth_token); 
+$jsonData = array();
 
+try{
 $response = $client->account->outgoing_caller_ids->create($_POST['phone'], array(    
 )); 
-
-$jsonData = array();
 $jsonData[] = array('statusCode' => "SUCCESS", 'validCode' => $response->validation_code);
-
+}
+catch (Services_Twilio_RestException $e) {
+    echo $e->getMessage();
+}
 echo json_encode($jsonData);
 $conn->close();
 ?>

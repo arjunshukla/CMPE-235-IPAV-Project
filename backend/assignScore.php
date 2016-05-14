@@ -10,7 +10,7 @@ if ($conn->connect_error) {
 } 
 
 $sql = 'INSERT INTO studentScore (emailID ,course, homeworks, labs, project, presentation, midterm, final) VALUES (\'' . $_POST['studentList'] . '\',' 
-        . ',\'' . $_POST['courseId'] . '\',' 
+        . '\'' . $_POST['courseId'] . '\',' 
         . $_POST['homeworks'] 
         . ',' . $_POST['labs']
         . ',' . $_POST['project']

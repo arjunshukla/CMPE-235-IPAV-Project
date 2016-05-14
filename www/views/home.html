@@ -37,7 +37,6 @@
     function validLogin(){
            var uname=$('#name').val();
            var password=$('#password1').val();
-           alert(uname + " : " + password );
            var dataString = 'name='+ uname + '&password='+ password;
            $.ajax({
                  type: "POST",
@@ -49,9 +48,9 @@
                  if(result == "ERROR") {
                      $("#dlg-invalid-credentials").popup( "open" );
                  } else if (result == "student") {
-                     window.location = '../views/student-dashboard.html';
+                     window.location = '../www/views/student-dashboard.html';
                  } else {
-                      window.location = '../views/professor-dashboard.html';
+                      window.location = '../www/views/professor-dashboard.html';
                  }
                  
                 }
@@ -359,7 +358,7 @@
 
             <h1 id="contact-us">Sign Up</h1>
             <hr/>
-            <form id="registerForm" method="post" action="../../backend/register.php" onsubmit="return validateForm()">
+            <form id="registerForm" method="post" action="../../backend/register.php" onsubmit="return validateRegistrationForm()">
                 <table class="form-layout">
                     <tr>
                         <td colspan="2" class="form-text-layout">
@@ -446,7 +445,6 @@
                     </tr>
                     <tr>
                         <td colspan="2" class="form-text-layout">
-                            Username :
                             <input type="email" class="stored form-text" name="userMail" id="userMail" placeholder="Username (Email Address)" required/>
                         </td>
                     </tr>
@@ -475,7 +473,7 @@
 <!-- sign up error popup -->
         <div data-role="popup" id="error-message" data-dismissible="false" data-theme="a" style="max-width:400px;">
             <div role="main" class="ui-content">
-                <h3 class="mc-text-danger">Sign Up Errord</h3>
+                <h3 class="mc-text-danger">Sign Up Error</h3>
                 <p>Please enter the correct details</p>
                 <div class="mc-text-center"><a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b mc-top-margin-1-5">Close</a></div>
             </div>

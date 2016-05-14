@@ -14,14 +14,25 @@ $result = mysqli_query($conn, $sql);
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    echo($row["password"]);
-    // Change to random gen pwd + send email to userMail
-    $newPassword = "password";
+    $newPassword = substr(uniqid(rand()),0,7);
+    $code = md5($newPassword);
+    $email = $_POST['userMail'];
     $sql1 = 'UPDATE users'
-        . ' SET password = \'' . md5($newPassword) 
+        . ' SET password = \'' . $code 
         . ' \' WHERE emailID = \'' . $_POST['userMail'] . '\';';
     $result1 = mysqli_query($conn, $sql1);
     
+    require('twilio-php/Services/Twilio.php'); 
+ 
+    $account_sid = 'AC1455ee0bbd738e954a909af61ecd1139'; 
+    $auth_token = '68f23912666fdd213738678e35742e71'; 
+    $client = new Services_Twilio($account_sid, $auth_token); 
+ 
+    $client->account->messages->create(array( 
+    	'To' => "4087149328", 
+    	'From' => "+18442932272", 
+    	'Body' => "Hi! " . $row["name"] . "! Your new password is: " . $newPassword,   
+    ));
 }
 
 $conn->close();

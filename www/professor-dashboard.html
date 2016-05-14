@@ -26,7 +26,21 @@
 
 
     <script type="text/javascript">
-        var panel11 = '<div data-role="panel" data-display="push" data-theme="b" id="professor-options"><ul data-role="listview"><li data-icon="home"><a href="#professor-dashboard" data-rel="close">Dashboard</a></li><li data-icon="camera"><a href="#assign-scores">Assign Scores</a></li><li data-icon="edit"><a href="#maximum-points">Maximum Points</a></li><li data-icon="star"><a href="#grade-range">Grade Range</a></li><li data-icon="check"><a href="#percentage-distribution">Percentage Distribution</a></li><li data-icon="star"><a href="#student-performance-bell-curve">Student Grades Bell Curve</a></li></ul></div>';
+    
+    function doAction() {
+        getListOfStudents();
+        getProfessorData();
+            
+            getGradeRanges();
+
+            getStudentScores();
+            //loadChart('CMPE-235', []);
+            // plotChart();
+            getAssignedScores();
+            getPercentageDistribution();
+    }
+    
+        var panel11 = '<div data-role="panel" data-display="push" data-theme="b" id="professor-options"><ul data-role="listview"><li data-icon="home"><a href="#professor-dashboard" data-rel="close">Dashboard</a></li><li onClick="doAction()" data-icon="camera"><a href="#assign-scores">Assign Scores</a></li><li onClick="doAction()" data-icon="edit"><a href="#maximum-points">Maximum Points</a></li><li onClick="doAction()" data-icon="star"><a href="#grade-range">Grade Range</a></li><li onClick="doAction()" data-icon="check"><a href="#percentage-distribution">Percentage Distribution</a></li><li onClick="doAction()" data-icon="star"><a href="#student-performance-bell-curve">Student Grades Bell Curve</a></li></ul></div>';
 
 
         var panel21 = '<div data-role="panel" data-position="right" data-display="reveal" data-theme="a" id="user-menu"><ul data-role="listview"><li data-icon="home"><a href="#professor-dashboard" data-rel="close">Dashboard</a></li><li data-icon="user"><a href="#account-settings">Account Settings</a></li><li data-icon="bullets"><a href="#notifications">Notifications</a></li><li data-icon="power"><a href="#" onclick="resetSession()">Logout</a></li></ul></div>';
@@ -42,16 +56,14 @@
 
         });
 
+        
         window.onload = function() {
-            getProfessorData();
-            getListOfStudents();
-            getGradeRanges();
-
-            getStudentScores();
-            //loadChart('CMPE-235', []);
-            // plotChart();
-            getAssignedScores();
-            getPercentageDistribution();
+            doAction();
+            if(!window.location.hash) {
+                window.location = window.location + '#loaded';
+                window.location.reload();
+            }
+            
         };
         
     </script>
@@ -81,7 +93,7 @@
 
                 </div>
                 <div class="avatar">
-                    <img alt="" src="http://lorempixel.com/100/100/people/2/">
+                    <img alt="" src="https://unsplash.it/500/?random">
                 </div>
                 <div class="info">
                     <div id="userName" class="title">

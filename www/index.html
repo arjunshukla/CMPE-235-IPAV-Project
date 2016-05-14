@@ -36,7 +36,7 @@
     
 
     
-        var panel1 = '<div data-role="panel" data-display="push" data-theme="b" id="nav-home"><ul data-role="listview"><li data-icon="home"><a href="#introduction-page" data-rel="close">Home</a></li><li><a href="#about-us">About</a></li><li><a href="#team">Team</a></li><li><a href="#payments">Payments</a><li><a href="#contact-us">Contact Us</a></li></ul></div>';
+        var panel1 = '<div data-role="panel" data-display="push" data-theme="b" id="nav-home"><ul data-role="listview"><li data-icon="home"><a href="#introduction-page" data-rel="close">Home</a></li><li><a href="#about-us">About</a></li><li><a href="#team">Team</a></li><li><a href="#payments">Donate</a><li><a href="#contact-us">Contact Us</a></li></ul></div>';
 
 
         var panel2 = '<div data-role="panel" data-position="right" data-display="reveal" data-theme="a" id="login-form"><form class="loginform"><h2>Login</h2><label for="name">Username:</label><input type="text" name="name" id="name" value="" data-clear-btn="true" data-mini="true"><label for="password">Password:</label><input type="password" name="password1" id="password1" data-clear-btn="true" autocomplete="off" data-mini="true"><div class="ui-grid-a"><div class="ui-block-a"><a href="#sign-up" class="ui-btn ui-shadow ui-corner-all ui-btn-b ui-mini">Sign Up</a></div><div class="ui-block-b"><a onclick="validLogin()" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-mini">Login</a></div></div><div class="ui-grid-a"><div class="ui-block"><a href="#forgot-password" >Forgot Password</a></div></div></form></div>'
@@ -252,7 +252,7 @@
     <div data-role="page" class="jqm-demos ui-responsive-panel" id="payments" data-title="Payments">
 
         <div data-role="header">
-            <h1>Payments</h1>
+            <h1>Donate</h1>
             <a href="#nav-home" data-icon="bars" data-iconpos="notext">
             Menu
         </a>
@@ -265,17 +265,14 @@
 
         <div role="main" class="ui-content jqm-content jqm-fullwidth">
 
-            <h1 id="payments">Payments</h1>
+            <h1 id="payments">Donate</h1>
             <hr/>
-            <p>You can submit payments for the app service charge.</p>
+            <p>You can donate towards the app :)</p>
             <form id="checkout" method="post" action="/checkout">
                 <div id="payment-form"></div>
                 <input type="submit" value="Pay $10">
             </form>
-
-
         </div>
-
     </div>
 
 

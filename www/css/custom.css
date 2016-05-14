@@ -252,7 +252,7 @@
 }
 
 .card.hovercard .cardheader {
-    background: url("http://lorempixel.com/850/280/nature/4/");
+    background: url("https://unsplash.it/500/?random");
     background-size: cover;
     height: 235px;
 }

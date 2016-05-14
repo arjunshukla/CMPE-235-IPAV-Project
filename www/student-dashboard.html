@@ -24,7 +24,12 @@
     <script type="text/javascript">
         window.onload = function() {
             getStudentData();
-            getStudentCourses();  
+            getStudentCourses();
+            if(!window.location.hash) {
+                window.location = window.location + '#loaded';
+                window.location.reload();
+            }
+            
         };
         
         var panel11 = '<div data-role="panel" data-display="push" data-theme="b" id="student-options"><ul data-role="listview"><li data-icon="home"><a href="#student-dashboard" data-rel="close">Dashboard</a></li><li data-icon="camera"><a href="#view-courses">Courses</a></li></ul></div>';
@@ -69,7 +74,7 @@
 
             </div>
             <div class="avatar">
-                <img alt="" src="http://lorempixel.com/100/100/people/1/">
+                <img alt="" src="https://unsplash.it/500/?random">
             </div>
             <div class="info">
                 <div id="userName" class="title">

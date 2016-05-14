@@ -127,3 +127,26 @@ function trim(str) {
   var str = str.replace(/^\s+|\s+$/, '');
   return str;
 }
+
+
+function validateContactUs() {
+  
+  var naam = $('#naam').val();
+  var mail = $('#mail').val();
+  var telefoon = $('#telefoon').val();
+  var subject = $('#subject').val();
+  var message = $('#message').val();
+  var dataString = 'naam=' + naam + '&mail=' + mail + '&telefoon=' + telefoon + '&subject=' + subject + '&message=' + message;
+  
+  $.ajax({
+    type: "POST",
+    url: "https://cmpe235ipav-arjunshukla.c9users.io/backend/mail.php",
+    data: dataString,
+    cache: false,
+    success: function(result) {
+      alert('Sent Successfully !!');
+    }
+  });
+  
+  return false;
+}

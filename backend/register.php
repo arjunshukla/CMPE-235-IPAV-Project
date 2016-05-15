@@ -20,8 +20,8 @@ $result = mysqli_query($conn, $sql);
 
 require('twilio-php/Services/Twilio.php'); 
  
-$account_sid = 'AC0372d38714d2a97a6f7adc26d844dcbb'; 
-$auth_token = '7955650e0e877d4b8ebba4ebc0962d87'; 
+$account_sid = 'AC4c866685a6d0eaf86abe30675bd3b3e2'; 
+$auth_token = 'b3b37c0df31b3402e3ea2cc43c95ff0f'; 
 $client = new Services_Twilio($account_sid, $auth_token); 
 $jsonData = array();
 
